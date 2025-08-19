@@ -2,6 +2,62 @@ import { useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
 import { geoApiUrl, geoApiOptions } from "../../Api";
 
+
+
+//styles
+
+const SELECT_STYLES = {
+  control: (base, state) => ({
+    ...base,
+    borderRadius: 999,
+    paddingLeft: 6,
+    minHeight: 48,
+    borderColor: state.isFocused ? "#1de9b6" : "#e3e3e3",
+    boxShadow: state.isFocused
+      ? "0 0 0 4px rgba(29,233,182,.15)"
+      : "0 6px 18px rgba(0,0,0,.08)",
+    ":hover": { borderColor: "#1de9b6" },
+    backgroundColor: "#fff",
+  }),
+  valueContainer: (b) => ({ ...b, padding: "0 10px" }),
+  input: (b) => ({ ...b, margin: 0 }),
+  singleValue: (b) => ({ ...b, fontWeight: 600 }),
+  placeholder: (b) => ({ ...b, color: "#6b7280" }),
+  indicatorsContainer: (b) => ({ ...b, gap: 4 }),
+  dropdownIndicator: (b, s) => ({
+    ...b,
+    color: s.isFocused ? "#10b981" : "#6b7280",
+    ":hover": { color: "#10b981" },
+  }),
+  clearIndicator: (b) => ({
+    ...b,
+    color: "#9ca3af",
+    ":hover": { color: "#ef4444" },
+  }),
+  menu: (b) => ({
+    ...b,
+    borderRadius: 16,
+    marginTop: 8,
+    boxShadow: "0 16px 40px rgba(0,0,0,.15)",
+    overflow: "hidden",
+  }),
+  menuList: (b) => ({ ...b, padding: 8 }),
+  option: (b, state) => ({
+    ...b,
+    borderRadius: 10,
+    padding: "10px 12px",
+    fontWeight: 500,
+    backgroundColor: state.isSelected
+      ? "rgba(16,185,129,.12)"
+      : state.isFocused
+      ? "rgba(0,194,255,.08)"
+      : "#fff",
+    color: "#111827",
+    cursor: "pointer",
+  }),
+};
+
+//dont be afraid just styles from gpt
 const Search = ({ onSearchChange }) => {
   const [search, setSearch] = useState(null);
 
@@ -32,6 +88,7 @@ const Search = ({ onSearchChange }) => {
       value={search}
       onChange={handleOnChange}
       loadOptions={loadOptions}
+      styles={SELECT_STYLES}
     />
   );
 };
