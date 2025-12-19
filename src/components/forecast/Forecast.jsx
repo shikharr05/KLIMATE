@@ -25,10 +25,12 @@ const Forecast = ({ data }) => {
     <>
       <label className="title">Daily Forecast:</label>
       <Accordion allowZeroExpanded>
-        {data.list.splice(0, 7).map((item, idx) => (
+        {data.list.slice(0, 6).map((item, idx) => (
           <AccordionItem key={idx}>
+            {" "}
+            {/* // React needs a key to uniquely identify each rendered component... more good way to do it <Accordian key = {item.dt}>... this .dt creates a unique timestamp and can be used even if the list is dynamic or there is changes in order of the list.... idx is generally used when the list is static and there are not changes.*/}
             <AccordionItemHeading>
-              <AccordionItemButton>
+              <AccordionItemButton> 
                 <div className="daily-item">
                   <img
                     alt="weather"
